@@ -3,40 +3,91 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>TOTTORI CLOUD ARCHIVE</title>
+    <title>TOTTORI ARCHIVE</title>
     <link href="https://cdn.jsdelivr.net/gh/sun-typeface/pretendard/dist/web/static/pretendard.css" rel="stylesheet">
     <style>
-        :root { --paper: #D1D3D3; --ink: #1a1a1a; --border: #A0A2A2; --font-serif: "Times New Roman", "serif"; --card-inner-bg: rgba(255, 255, 255, 0.15); --accent: #4A565C; }
-        body { margin: 0; font-family: 'Pretendard', sans-serif; background-color: var(--paper); background-image: url("https://www.transparenttextures.com/patterns/asfalt-dark.png"); color: var(--ink); line-height: 1.6; padding-bottom: 140px; word-break: keep-all; -webkit-tap-highlight-color: transparent; }
-        header { padding: 40px 20px 20px; max-width: 600px; margin: 0 auto; text-align: center; cursor: pointer; }
+        :root {
+            --paper: #D1D3D3; 
+            --ink: #1a1a1a;
+            --border: #A0A2A2;
+            --font-serif: "Times New Roman", "serif";
+            --card-inner-bg: rgba(255, 255, 255, 0.15);
+            --accent: #4A565C;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Pretendard', sans-serif;
+            background-color: var(--paper);
+            background-image: url("https://www.transparenttextures.com/patterns/asfalt-dark.png");
+            color: var(--ink);
+            line-height: 1.6;
+            padding-bottom: 140px; 
+            word-break: keep-all;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        header { padding: 40px 20px 20px; max-width: 600px; margin: 0 auto; text-align: center; }
         header h1 { font-size: 11px; letter-spacing: 0.3em; margin-bottom: 10px; opacity: 0.6; }
         .main-title { font-size: 42px; font-family: var(--font-serif); border-bottom: 2px solid var(--ink); display: inline-block; line-height: 1.1; }
         .sub-title { font-size: 24px; font-weight: 300; display: block; margin-top: 5px; opacity: 0.8; }
+
         nav { position: fixed; bottom: 20px; left: 0; right: 0; width: 100%; display: flex; justify-content: center; z-index: 1000; }
-        .nav-inner { display: flex; gap: 4px; background: rgba(20, 20, 20, 0.9); padding: 8px 12px; border-radius: 40px; backdrop-filter: blur(15px); border: 1px solid rgba(255,255,255,0.1); width: 90%; overflow-x: auto; scrollbar-width: none; box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
+        .nav-inner { 
+            display: flex; gap: 4px; background: rgba(20, 20, 20, 0.9); 
+            padding: 8px 12px; border-radius: 40px; backdrop-filter: blur(15px); 
+            border: 1px solid rgba(255,255,255,0.1); width: 90%; overflow-x: auto; 
+            scrollbar-width: none; -ms-overflow-style: none;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
         .nav-inner::-webkit-scrollbar { display: none; }
-        .nav-inner a { text-decoration: none; font-size: 10px; color: #888; padding: 10px 14px; border-radius: 30px; font-weight: 800; transition: 0.2s; white-space: nowrap; flex-shrink: 0; }
+        .nav-inner a { 
+            text-decoration: none; font-size: 10px; color: #888; padding: 10px 14px; 
+            border-radius: 30px; font-weight: 800; transition: 0.2s; white-space: nowrap; flex-shrink: 0;
+        }
         .nav-inner a.active { background: #fff; color: #000; }
+
         .container { max-width: 600px; margin: 0 auto; padding: 0 20px; }
         .content-section { display: none; animation: fadeIn 0.4s ease; }
         .content-section.active { display: block; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
         .section-title { font-size: 11px; letter-spacing: 0.15em; margin: 35px 0 15px; font-weight: 800; color: #333; opacity: 0.8; }
         .card { border: 1px solid var(--border); padding: 2px; margin-bottom: 15px; background: transparent; }
         .card-inner { border: 1px solid var(--border); padding: 16px; background: var(--card-inner-bg); position: relative; }
-        .check-item { display: flex; align-items: flex-start; gap: 10px; cursor: pointer; margin-bottom: 10px; min-height: 32px; }
-        .check-item input[type="checkbox"] { appearance: none; -webkit-appearance: none; width: 20px; height: 20px; border: 1px solid var(--ink); background: transparent; cursor: pointer; flex-shrink: 0; position: relative; }
+
+        .check-item { display: flex; align-items: flex-start; gap: 10px; cursor: pointer; margin-bottom: 10px; min-height: 32px; position: relative; }
+        .check-item input[type="checkbox"] {
+            appearance: none; -webkit-appearance: none; 
+            width: 20px; height: 20px; border: 1px solid var(--ink);
+            background: transparent; cursor: pointer; flex-shrink: 0; margin: 0; position: relative;
+        }
         .check-item input[type="checkbox"]:checked { background: var(--ink); }
-        .check-item input[type="checkbox"]:checked::after { content: '✓'; color: white; position: absolute; font-size: 14px; left: 4px; top: -2px; }
-        input, select, textarea { width: 100%; padding: 12px; border: 1px solid var(--border); background: rgba(255, 255, 255, 0.5); margin-bottom: 8px; font-family: inherit; font-size: 14px; box-sizing: border-box; border-radius: 0; }
-        .btn-black { background: var(--ink); color: #fff; border: none; padding: 15px; width: 100%; cursor: pointer; font-size: 11px; font-weight: 700; letter-spacing: 0.1em; }
+        .check-item input[type="checkbox"]:checked::after { 
+            content: '✓'; color: white; position: absolute; font-size: 14px; left: 4px; top: -2px; 
+        }
+        .check-text { font-size: 13px; line-height: 20px; font-weight: 500; }
+
+        input, select, textarea { 
+            width: 100%; padding: 12px; border: 1px solid var(--border); 
+            background: rgba(255, 255, 255, 0.5); margin-bottom: 8px; 
+            font-family: inherit; font-size: 14px; box-sizing: border-box; border-radius: 0;
+        }
+        .btn-black { 
+            background: var(--ink); color: #fff; border: none; padding: 15px; 
+            width: 100%; cursor: pointer; font-size: 11px; font-weight: 700; letter-spacing: 0.1em;
+        }
+
         .btn-del { color: #888; font-size: 11px; cursor: pointer; float: right; padding: 5px; }
-        .img-scroll { display: flex; gap: 8px; overflow-x: auto; padding: 10px 0; }
+        .img-scroll { display: flex; gap: 8px; overflow-x: auto; padding: 10px 0; -webkit-overflow-scrolling: touch; }
         .img-scroll img { width: 85px; height: 85px; object-fit: cover; border: 1px solid var(--border); flex-shrink: 0; }
+
         .monitor { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 20px; }
         .monitor-item { border: 1px solid var(--border); background: var(--card-inner-bg); padding: 12px 4px; text-align: center; font-size: 9px; }
         .monitor-item b { display: block; font-size: 13px; margin-top: 4px; color: #000; }
+
         details summary { cursor: pointer; font-size: 12px; font-weight: bold; padding: 12px; background: rgba(0,0,0,0.05); margin-bottom: 8px; border: 1px solid var(--border); }
+        .prep-box { background: var(--ink); color: #fff; padding: 20px; margin-top: 10px; }
     </style>
 </head>
 <body>
@@ -62,15 +113,16 @@
 <div class="container">
     <section id="tab-home" class="content-section active">
         <div class="card"><div class="card-inner">
-            <p style="font-size:15px; line-height: 1.8; font-family: var(--font-serif); text-align: center; margin: 10px 0;">"사구에서의 바람과,<br>바다의 소리를 실시간으로 공유합니다."</p>
+            <p style="font-size:15px; line-height: 1.8; font-family: var(--font-serif); text-align: center; margin: 10px 0;">"사구에서의 바람과,<br>바다의 소리를 이곳에 엮습니다."</p>
         </div></div>
-        <div class="section-title">Settings (Cloud)</div>
+        <div class="section-title">Settings</div>
         <div class="card"><div class="card-inner">
+            <p style="font-size:11px; margin-bottom:10px; opacity:0.7;">여행 인원의 이름을 설정해주세요.</p>
             <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px;">
-                <input type="text" id="nameA" placeholder="인원 A 이름">
-                <input type="text" id="nameB" placeholder="인원 B 이름">
+                <input type="text" id="nameA" placeholder="인원 A 이름 (예: 길동)">
+                <input type="text" id="nameB" placeholder="인원 B 이름 (예: 철수)">
             </div>
-            <button onclick="updateNames()" class="btn-black">인원 정보 업데이트</button>
+            <button onclick="updateNames()" class="btn-black">SET NAMES</button>
         </div></div>
     </section>
 
@@ -85,6 +137,14 @@
     <section id="tab-plan" class="content-section">
         <div class="section-title">Recommendations</div>
         <details><summary>추천 장소 프리셋 보기</summary><div id="presetList" class="card" style="background: white;"></div></details>
+        <div class="section-title">Google Maps</div>
+        <div class="card"><div class="card-inner">
+            <input type="text" id="mapSearch" placeholder="찾고 싶은 장소">
+            <div style="display:flex; gap:8px;">
+                <button onclick="searchMap()" style="flex:1; padding:12px; border:1px solid var(--ink); background:none; font-size:10px; font-weight:bold;">SEARCH</button>
+                <button onclick="linkLocation()" style="flex:1; padding:12px; border:1px solid var(--ink); background:var(--ink); color:#fff; font-size:10px; font-weight:bold;">LINK TO PLAN</button>
+            </div>
+        </div></div>
         <div id="planList"></div>
         <div class="section-title">Add Schedule</div>
         <div class="card"><div class="card-inner">
@@ -99,8 +159,10 @@
     </section>
 
     <section id="tab-drive" class="content-section">
-        <div class="section-title">Driving Principles</div>
+        <div class="section-title">6 Driving Principles</div>
         <div class="card"><div class="card-inner" id="principlesUI"></div></div>
+        <div class="section-title">Required Items</div>
+        <div class="prep-box" id="driveChecklistUI"></div>
     </section>
 
     <section id="tab-pay" class="content-section">
@@ -117,7 +179,11 @@
                 <input type="number" id="bud-b" class="ph-b" placeholder="B 예산">
             </div>
             <button onclick="updateBud()" class="btn-black" style="background:#666; padding:10px; margin-bottom:10px;">SET BUDGET</button>
-            <select id="payTarget"><option value="p">공금</option><option value="a" class="opt-a">A 사비</option><option value="b" class="opt-b">B 사비</option></select>
+            <select id="payTarget">
+                <option value="p">공금</option>
+                <option value="a" class="opt-a">A 사비</option>
+                <option value="b" class="opt-b">B 사비</option>
+            </select>
             <input type="text" id="payName" placeholder="내역">
             <input type="number" id="payAmt" placeholder="금액(¥)">
             <input type="file" id="payFile" multiple style="font-size: 11px;">
@@ -126,13 +192,19 @@
     </section>
 
     <section id="tab-diary" class="content-section">
+        <div class="section-title">Journal</div>
         <div id="diaryList"></div>
         <div class="card"><div class="card-inner">
             <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px;">
                 <select id="diaryDay"><option value="1">DAY 1</option><option value="2">DAY 2</option><option value="3">DAY 3</option></select>
                 <select id="diaryWeather"><option value="☀️">맑음</option><option value="☁️">흐림</option><option value="☔">비</option></select>
             </div>
-            <select id="diaryUser"><option value="">작성자 선택</option><option value="a" class="opt-a">A</option><option value="b" class="opt-b">B</option></select>
+            <input type="date" id="diaryDate">
+            <select id="diaryUser">
+                <option value="">작성자 선택</option>
+                <option value="a" class="opt-a">A</option>
+                <option value="b" class="opt-b">B</option>
+            </select>
             <textarea id="diaryText" placeholder="오늘의 추억..." rows="4"></textarea>
             <input type="file" id="diaryFile" multiple style="font-size: 11px;">
             <button onclick="addItem('diary')" class="btn-black">SAVE DIARY</button>
@@ -142,6 +214,7 @@
     <section id="tab-link" class="content-section">
         <div class="section-title">Essential Links</div>
         <div id="fixedLinks"></div>
+        <div class="section-title">My Links</div>
         <div id="customLinks"></div>
         <div class="card"><div class="card-inner">
             <input type="text" id="linkName" placeholder="사이트명">
@@ -155,7 +228,7 @@
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
     import { getFirestore, collection, addDoc, deleteDoc, doc, onSnapshot, setDoc, updateDoc, arrayUnion } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
-    // ✅ 사용자가 제공한 Firebase 설정값 삽입 완료
+    // Firebase 설정값 (복사하신 내용)
     const firebaseConfig = {
         apiKey: "AIzaSyDqb3T4kmMH5WVNFsXIUiSjlasqWmPy-gs",
         authDomain: "tottori-b87de.firebaseapp.com",
@@ -167,71 +240,126 @@
     };
 
     const app = initializeApp(firebaseConfig);
-    const db = getFirestore(app);
+    const dbFirestore = getFirestore(app);
 
-    // 기본 데이터 정의
-    const PRESET_PREP = ["여권/면허증", "한국면허증", "비짓재팬QR", "엔화 현금", "110V 돼지코", "보조배터리", "유심/이심", "비상약", "동전지갑"];
-    const PRESET_PLACES = [{n: "돗토리 사구", m: "해안 사구"}, {n: "코난 박물관", m: "아오야마 고쇼"}];
-    const DRIVE_P = [{e:"🛑",b:"止まれ",s:"정지선 3초 정지"}, {e:"⬅️",b:"좌측통행",s:"반대 방향 주의"}];
+    const PRESET_PREP = ["여권/면허증", "한국면허증", "비짓재팬QR", "엔화 현금", "110V 돼지코", "보조배터리", "유심/이심", "비상약", "동전지갑", "물티슈", "세면도구", "돼지코 어댑터"];
+    const PRESET_PLACES = [{n: "돗토리 사구", m: "일본 최대 규모 해안 사구."}, {n: "모래 미술관", m: "세계 유일 모래 박물관."}, {n: "하쿠토 신사", m: "인연 맺는 토끼 신사."}, {n: "쿠라요시 시라카베 도조군", m: "에도 시대 하얀 창고 거리."}, {n: "코난 박물관", m: "코난 작가 박물관."}, {n: "미즈키 시게루 로드", m: "요괴 동상 상점가."}, {n: "다이센산", m: "산인의 후지산."}];
+    const PRESET_LINKS = [{h:"Visit Japan Web", u:"https://vjr.digital.go.jp/", d:"입국 심사 사전 등록"}, {h:"돗토리 관광", u:"https://www.tottori-tour.jp/ko/", d:"공식 가이드"}, {h:"야후 날씨", u:"https://weather.yahoo.co.jp/weather/jp/31/6910.html", d:"실시간 예보"}];
+    const DRIVE_P = [{e:"🛑",b:"止まれ (토마레)",s:"정지선에서 3초 정지."}, {e:"⬅️",b:"좌측 통행",s:"왼쪽 작게, 오른쪽 크게."}, {e:"🛤️",b:"철길 건널목",s:"무조건 일시정지."}, {e:"🚦",b:"신호 준수",s:"적신호 좌회전 금지."}, {e:"🚶",b:"보행자 우선",s:"횡단보도 정지."}, {e:"⚠️",b:"중앙선 준수",s:"노란 실선 추월 금지."}];
 
-    window.appState = { customPrep: [], plan: [], pay: [], diary: [], links: [], buds: {p:0, a:0, b:0}, names: {a: "인원A", b: "인원B"} };
+    // 상태 관리 (앱 데이터)
+    let appData = {
+        customPrep: [],
+        plan: [],
+        pay: [],
+        diary: [],
+        links: [],
+        buds: {p:0, a:0, b:0},
+        names: {a: "인원A", b: "인원B"}
+    };
 
-    // 실시간 수신 설정
-    onSnapshot(doc(db, "settings", "global"), (s) => { if(s.exists()) { window.appState.names = s.data().names; window.appState.buds = s.data().buds || {p:0, a:0, b:0}; render(); } });
-    onSnapshot(collection(db, "prep"), (s) => { window.appState.customPrep = s.docs.map(d=>({id:d.id, ...d.data()})); render(); });
-    onSnapshot(collection(db, "plan"), (s) => { window.appState.plan = s.docs.map(d=>({id:d.id, ...d.data()})); render(); });
-    onSnapshot(collection(db, "pay"), (s) => { window.appState.pay = s.docs.map(d=>({id:d.id, ...d.data()})); render(); });
-    onSnapshot(collection(db, "diary"), (s) => { window.appState.diary = s.docs.map(d=>({id:d.id, ...d.data()})); render(); });
-    onSnapshot(collection(db, "links"), (s) => { window.appState.links = s.docs.map(d=>({id:d.id, ...d.data()})); render(); });
+    // 실시간 데이터 동기화 (Snapshot)
+    onSnapshot(doc(dbFirestore, "settings", "global"), (s) => {
+        if(s.exists()) {
+            appData.names = s.data().names;
+            appData.buds = s.data().buds || {p:0, a:0, b:0};
+            render();
+        }
+    });
 
-    // 전역 함수
+    const collections = ['prep', 'plan', 'pay', 'diary', 'links'];
+    collections.forEach(col => {
+        onSnapshot(collection(dbFirestore, col), (snapshot) => {
+            appData[col === 'prep' ? 'customPrep' : col] = snapshot.docs.map(d => ({id: d.id, ...d.data()}));
+            render();
+        });
+    });
+
+    // 화면 전환
     window.showTab = (id) => {
         document.querySelectorAll('.content-section').forEach(s => s.classList.remove('active'));
         document.querySelectorAll('.nav-inner a').forEach(a => a.classList.remove('active'));
         document.getElementById('tab-'+id).classList.add('active');
         document.getElementById('btn-'+id).classList.add('active');
+        document.querySelectorAll('input:not([type="checkbox"]):not([type="number"]), textarea').forEach(el => {
+            if(!['nameA', 'nameB'].includes(el.id)) el.value = '';
+        });
         window.scrollTo(0,0);
     };
 
+    // 데이터 업데이트 함수들
     window.updateNames = async () => {
-        const a = document.getElementById('nameA').value || "인원A";
-        const b = document.getElementById('nameB').value || "인원B";
-        await setDoc(doc(db, "settings", "global"), { names: { a, b } }, { merge: true });
-        alert("이름 업데이트 완료!");
+        const a = document.getElementById('nameA').value;
+        const b = document.getElementById('nameB').value;
+        await setDoc(doc(dbFirestore, "settings", "global"), { 
+            names: { a: a || appData.names.a, b: b || appData.names.b }
+        }, { merge: true });
+        alert("이름이 설정되었습니다.");
     };
 
     window.updateBud = async () => {
-        const buds = { p: Number(document.getElementById('bud-p').value), a: Number(document.getElementById('bud-a').value), b: Number(document.getElementById('bud-b').value) };
-        await setDoc(doc(db, "settings", "global"), { buds }, { merge: true });
-        alert("예산 업데이트 완료!");
+        await setDoc(doc(dbFirestore, "settings", "global"), {
+            buds: {
+                p: Number(document.getElementById('bud-p').value),
+                a: Number(document.getElementById('bud-a').value),
+                b: Number(document.getElementById('bud-b').value)
+            }
+        }, { merge: true });
+        alert("예산 저장됨.");
     };
 
     async function getBase64(input) {
         if (!input.files || input.files.length === 0) return [];
         return Promise.all(Array.from(input.files).map(f => new Promise(res => {
-            const r = new FileReader(); r.onload = e => res(e.target.result); r.readAsDataURL(f);
+            const r = new FileReader();
+            r.onload = e => res(e.target.result);
+            r.readAsDataURL(f);
         })));
     }
 
     window.addItem = async (type) => {
         if(type==='prep') {
-            const text = document.getElementById('prepIn').value;
-            if(text) await addDoc(collection(db, "prep"), { text });
+            const v=document.getElementById('prepIn').value;
+            if(v) await addDoc(collection(dbFirestore, "prep"), { text: v });
         } else if(type==='plan') {
             const title = document.getElementById('planTitle').value;
-            if(title) await addDoc(collection(db, "plan"), { day: document.getElementById('planDay').value, time: document.getElementById('planTime').value, title, memo: document.getElementById('planMemo').value });
+            if(!title) return;
+            await addDoc(collection(dbFirestore, "plan"), {
+                day: document.getElementById('planDay').value,
+                time: document.getElementById('planTime').value,
+                title: title,
+                memo: document.getElementById('planMemo').value
+            });
         } else if(type==='pay') {
             const imgs = await getBase64(document.getElementById('payFile'));
-            await addDoc(collection(db, "pay"), { target: document.getElementById('payTarget').value, name: document.getElementById('payName').value, amt: Number(document.getElementById('payAmt').value), imgs, createdAt: Date.now() });
+            await addDoc(collection(dbFirestore, "pay"), {
+                target: document.getElementById('payTarget').value,
+                name: document.getElementById('payName').value,
+                amt: Number(document.getElementById('payAmt').value),
+                imgs,
+                createdAt: Date.now()
+            });
         } else if(type==='diary') {
             const u = document.getElementById('diaryUser').value;
-            if(!u) return alert("작성자 선택!");
+            if(!u) { alert("작성자를 선택하세요."); return; }
             const imgs = await getBase64(document.getElementById('diaryFile'));
-            await addDoc(collection(db, "diary"), { day: document.getElementById('diaryDay').value, weather: document.getElementById('diaryWeather').value, user: window.appState.names[u], text: document.getElementById('diaryText').value, imgs, comments: [], createdAt: Date.now() });
+            await addDoc(collection(dbFirestore, "diary"), {
+                day: document.getElementById('diaryDay').value,
+                weather: document.getElementById('diaryWeather').value,
+                date: document.getElementById('diaryDate').value,
+                user: appData.names[u],
+                text: document.getElementById('diaryText').value,
+                imgs,
+                comments: [],
+                createdAt: Date.now()
+            });
         } else if(type==='link') {
-            const h = document.getElementById('linkName').value;
+            const n = document.getElementById('linkName').value;
             const u = document.getElementById('linkUrl').value;
-            if(h && u) await addDoc(collection(db, "links"), { h, u: u.startsWith('http')?u:'https://'+u });
+            if(n&&u) await addDoc(collection(dbFirestore, "links"), {
+                h: n,
+                u: u.startsWith('http')?u:'https://'+u
+            });
         }
         document.querySelectorAll(`#tab-${type} input:not([type="checkbox"]), #tab-${type} textarea`).forEach(el => el.value = '');
     };
@@ -239,35 +367,70 @@
     window.addComment = async (id) => {
         const input = document.getElementById(`cmt-in-${id}`);
         if(input.value) {
-            await updateDoc(doc(db, "diary", id), { comments: arrayUnion(input.value) });
+            await updateDoc(doc(dbFirestore, "diary", id), {
+                comments: arrayUnion(input.value)
+            });
             input.value = '';
         }
     };
 
-    window.delItem = async (type, id) => { if(confirm("삭제?")) await deleteDoc(doc(db, type, id)); };
+    window.delItem = async (type, id) => {
+        if(confirm("삭제?")) {
+            const colName = type === 'prep' ? 'prep' : type;
+            await deleteDoc(doc(dbFirestore, colName, id));
+        }
+    };
 
+    // UI 렌더링
     function render() {
-        const s = window.appState; const n = s.names;
-        document.querySelectorAll('.label-a, .opt-a').forEach(el => el.innerText = n.a);
-        document.querySelectorAll('.label-b, .opt-b').forEach(el => el.innerText = n.b);
-        document.querySelector('.ph-a').placeholder = `${n.a} 예산`;
-        document.querySelector('.ph-b').placeholder = `${n.b} 예산`;
+        const { names, buds, customPrep, plan, pay, diary, links } = appData;
 
+        // 이름 UI 연동
+        document.querySelectorAll('.label-a').forEach(el => el.innerText = names.a);
+        document.querySelectorAll('.label-b').forEach(el => el.innerText = names.b);
+        document.querySelectorAll('.opt-a').forEach(el => el.innerText = names.a);
+        document.querySelectorAll('.opt-b').forEach(el => el.innerText = names.b);
+        document.querySelector('.ph-a').placeholder = `${names.a} 예산`;
+        document.querySelector('.ph-b').placeholder = `${names.b} 예산`;
+        document.getElementById('nameA').value = names.a;
+        document.getElementById('nameB').value = names.b;
+
+        // 체크리스트
         document.getElementById('fixedPrep').innerHTML = PRESET_PREP.map(x=>`<label class="check-item"><input type="checkbox"><div class="check-text">${x}</div></label>`).join('');
-        document.getElementById('customPrepList').innerHTML = s.customPrep.map(x=>`<div style="font-size:13px; padding:8px 0; border-bottom:1px solid #ccc; display:flex; justify-content:space-between;"><span>• ${x.text}</span> <button onclick="delItem('prep','${x.id}')" class="btn-del">×</button></div>`).join('');
-        document.getElementById('planList').innerHTML = s.plan.sort((a,b)=>a.day-b.day || a.time.localeCompare(b.time)).map(p=>`<div class="card"><div class="card-inner"><small>DAY ${p.day} | ${p.time}</small><br><b>${p.title}</b><p style="font-size:12px;">${p.memo}</p><button onclick="delItem('plan','${p.id}')" class="btn-del">×</button></div></div>`).join('');
+        document.getElementById('customPrepList').innerHTML = customPrep.map(x=>`<div style="font-size:13px; padding:8px 0; border-bottom:1px solid #ccc; display:flex; justify-content:space-between;"><span>• ${x.text}</span> <button onclick="delItem('prep','${x.id}')" class="btn-del">×</button></div>`).join('');
         
-        let sp = {p:0, a:0, b:0}; s.pay.forEach(e => sp[e.target] += e.amt);
-        document.getElementById('b-p').innerText = `¥${(s.buds.p - sp.p).toLocaleString()}`;
-        document.getElementById('b-a').innerText = `¥${(s.buds.a - sp.a).toLocaleString()}`;
-        document.getElementById('b-b').innerText = `¥${(s.buds.b - sp.b).toLocaleString()}`;
+        // 일정
+        plan.sort((a,b)=>a.day-b.day || a.time.localeCompare(b.time));
+        document.getElementById('planList').innerHTML = plan.map(p=>`<div class="card"><div class="card-inner"><small>DAY ${p.day} | ${p.time}</small><br><b>${p.title}</b><p style="font-size:12px; color:#555;">${p.memo}</p><button onclick="delItem('plan','${p.id}')" class="btn-del">Delete</button></div></div>`).join('');
         
-        document.getElementById('payList').innerHTML = s.pay.sort((a,b)=>b.createdAt-a.createdAt).map(e=>`<div class="card"><div class="card-inner"><b>[${e.target==='p'?'공금':n[e.target]}] ${e.name}</b><br><span>¥${e.amt.toLocaleString()}</span><div class="img-scroll">${(e.imgs||[]).map(m=>`<img src="${m}">`).join('')}</div><button onclick="delItem('pay','${e.id}')" class="btn-del">×</button></div></div>`).join('');
-        document.getElementById('diaryList').innerHTML = s.diary.sort((a,b)=>b.createdAt-a.createdAt).map(d=>`<div class="card"><div class="card-inner"><small>DAY ${d.day} | ${d.user}</small><p>${d.text}</p><div class="img-scroll">${(d.imgs||[]).map(m=>`<img src="${m}">`).join('')}</div><div>${(d.comments||[]).map(c=>`<div style="font-size:11px;">💬 ${c}</div>`).join('')}<div style="display:flex; gap:5px;"><input type="text" id="cmt-in-${d.id}" placeholder="댓글" style="margin:0; padding:5px;"><button onclick="addComment('${d.id}')">OK</button></div></div><button onclick="delItem('diary','${d.id}')" class="btn-del">×</button></div></div>`).join('');
-        document.getElementById('principlesUI').innerHTML = DRIVE_P.map(p=>`<div style="margin-bottom:10px;"><span>${p.e}</span> <b>${p.b}</b><br><small>${p.s}</small></div>`).join('');
-        document.getElementById('presetList').innerHTML = PRESET_PLACES.map(p => `<div style="padding:10px; border-bottom:1px solid #eee;"><b>${p.n}</b> <button onclick="window.setPresetToInput('${p.n}','${p.m}')">ADD</button></div>`).join('');
+        // 가계부
+        let spent = {p:0, a:0, b:0}; 
+        pay.forEach(e => spent[e.target] += e.amt);
+        document.getElementById('b-p').innerText = `¥${(buds.p - spent.p).toLocaleString()}`; 
+        document.getElementById('b-a').innerText = `¥${(buds.a - spent.a).toLocaleString()}`; 
+        document.getElementById('b-b').innerText = `¥${(buds.b - spent.b).toLocaleString()}`;
+        
+        document.getElementById('payList').innerHTML = pay.sort((a,b)=>b.createdAt-a.createdAt).map(e=>`<div class="card"><div class="card-inner"><b>[${e.target === 'p' ? '공금' : names[e.target]}] ${e.name}</b><br><span>¥${e.amt.toLocaleString()}</span><div class="img-scroll">${(e.imgs||[]).map(m=>`<img src="${m}">`).join('')}</div><button onclick="delItem('pay','${e.id}')" class="btn-del">Delete</button></div></div>`).join('');
+        
+        // 일기
+        document.getElementById('diaryList').innerHTML = diary.sort((a,b)=>b.createdAt-a.createdAt).map(d=>`<div class="card"><div class="card-inner"><small>DAY ${d.day} | ${d.user}</small><p style="margin:10px 0; font-size:13px;">${d.text}</p><div class="img-scroll">${(d.imgs||[]).map(m=>`<img src="${m}">`).join('')}</div><div style="border-top:1px solid #ddd; margin-top:10px; padding-top:10px;">${(d.comments||[]).map(c=>`<div style="font-size:11px;">💬 ${c}</div>`).join('')}<div style="display:flex; gap:5px; margin-top:5px;"><input type="text" id="cmt-in-${d.id}" placeholder="댓글" style="margin:0; padding:5px;"><button onclick="addComment('${d.id}')" style="padding:5px 10px;">OK</button></div></div><button onclick="delItem('diary','${d.id}')" class="btn-del">Remove</button></div></div>`).join('');
+        
+        // 링크
+        document.getElementById('fixedLinks').innerHTML = PRESET_LINKS.map(l=>`<a href="${l.u}" target="_blank" style="text-decoration:none; color:inherit;"><div class="card"><div class="card-inner"><b>${l.h}</b><br><small>${l.d}</small></div></div></a>`).join('');
+        document.getElementById('customLinks').innerHTML = links.map(l=>`<div class="card"><div class="card-inner"><a href="${l.u}" target="_blank" style="text-decoration:none; color:inherit;"><b>${l.h}</b></a><button onclick="delItem('links','${l.id}')" class="btn-del">×</button></div></div>`).join('');
+
+        // 드라이브
+        document.getElementById('principlesUI').innerHTML = DRIVE_P.map(p=>`<div style="display:flex; gap:10px; margin-bottom:10px;"><span>${p.e}</span><div><b>${p.b}</b><br><small>${p.s}</small></div></div>`).join('');
+        document.getElementById('driveChecklistUI').innerHTML = ["국제면허증", "한국면허증", "여권", "예약서", "ETC카드"].map(c=>`<label class="check-item"><input type="checkbox"><div class="check-text">${c}</div></label>`).join('');
+        
+        // 추천
+        document.getElementById('presetList').innerHTML = PRESET_PLACES.map(p => `<div style="display:flex; justify-content:space-between; padding:10px; border-bottom:1px solid #eee;"><span><b>${p.n}</b><br><small>${p.m}</small></span><button onclick="setPresetToInput('${p.n}', '${p.m}')">ADD</button></div>`).join('');
     }
-    window.setPresetToInput = (n, m) => { document.getElementById('planTitle').value = n; document.getElementById('planMemo').value = m; };
+    
+    // 유틸
+    window.searchMap = () => { const q = document.getElementById('mapSearch').value; if(q) window.open(`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(q)}`, '_blank'); }
+    window.linkLocation = () => { const q = document.getElementById('mapSearch').value; if(q) { document.getElementById('planTitle').value = q; document.getElementById('planMemo').value = `Map: ${q}`; alert("연동됨."); } }
+    window.setPresetToInput = (n, m) => { document.getElementById('planTitle').value = n; document.getElementById('planMemo').value = m; }
 </script>
 </body>
 </html>
